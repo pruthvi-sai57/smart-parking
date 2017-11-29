@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="bootstrap.min.css">
+  <script src="jquery.min.js"></script>
+  <script src="bootstrap.min.js"></script> 
+<script>
+//var emailpattern = /^[a-zA-Z][a-zA-Z0-9_]*(\.[a-zA-Z0-9_]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.([a-zA-Z]{2,4})$/ ;
+var emailpattern = 	/^[a-zA-z][a-zA-Z]*[0-9]*((_){1})*[0-9]*@[a-zA-Z]\.[a-zA-Z][a-zA-Z][a-zA-Z]$/;
+//var emailpattern = /^[a-zA-Z][a-z|A-Z|0-9|_]*[@][a-zA-Z]+$/;
+var carpattern=/^[a-zA-Z][a-zA-Z]\-[0-9][0-9]\-[a-zA-Z][a-zA-Z]\-[0-9][0-9][0-9][0-9]$/;
+
+function validateemail()
+{
+
+var emailval=document.getElementById("emailidtextbox").value;
+	if((emailval.length)<8 || (emailval.length)>16)
+	{
+	alert("email id must contain 8 chracters and maximum of 16 ");
+		
+	}
+	else if((!emailpattern.test(emailval.value)) )
+	{
+		alert("email must be followed by numbers");
+		
+	}
+
+}
+
+function validatecontact()
+{
+	
+	var contactval=document.getElementById("contacttextbox").value;
+	if(contactval.length!=10)
+	{
+		alert("contact must be of 10 digits");
+		
+	}
+	
+}
+function validatepassword()
+{
+	
+	
+	var p6=document.getElementById("passwordtextbox").value;
+	
+	
+	if((p6.length)<3 || (p6.length)>8)
+	{
+		alert("password must be minimum of 3 characters and maximum of 8 characters");
+	}
+	
+}
+function validateconfirmpassword()
+{
+	var p1=document.getElementById("passwordtextbox").value;
+	var p2=document.getElementById("confirmpasswordtextbox").value;
+	if((p1.localeCompare(p2))!==0)
+	{
+		alert("password and confirm password must be equal");
+	}
+}	
+function validatecarnum()
+{
+	
+	var cnum=document.getElementById("vehicletextbox").value;
+	if(cnum.length!=13)
+	{
+		alert("vehicle number must contain 13 characters");
+	}
+	if((!carpattern.test(cnum.value)))
+	{
+		alert("car number pattern is not correct");
+	}
+	
+	
+}
+</script>
+
+
+
+</head>
+<body background="audi_tt_sports_car-wallpaper-1366x768.jpg">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">SMARTPARK</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="index.html">Home</a></li>
+     
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="loginpage.html"><span class="glyphicon glyphicon-user"></span>Login</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-4">
+			
+		</div>
+		<div class="col-sm-4">
+			<h3>SIGNUP</h3>
+			<form method="POST" action="signupconnectivity.php">
+				<div class="form-group">
+					<label for="emailidtextbox"><font color="white">Email Id</font></label>
+					<input type="email" class="form-control" name="emailidtextbox" id="emailidtextbox" onblur="validateemail();" required>
+				</div>
+				<div class="form-group">
+					<label for="contacttextbox"><font color="white">Contact:</font></label>
+					<input type="text" class="form-control" name="contacttextbox"  id="contacttextbox" onblur="validatecontact();" required>
+				</div>
+				<div class="form-group">
+					<label for="passwordtextbox"><font color="white">Password:</font></label>
+					<input type="password" class="form-control"  name="passwordtextbox"  id="passwordtextbox" onblur="validatepassword();" required>
+				</div>
+				<div class="form-group">
+					<label for="confirmpasswordtextbox"><font color="white">ConfirmPassword:</font></label>
+					<input type="password" class="form-control"  name="confirmpasswordtextbox" id="confirmpasswordtextbox" onblur="validateconfirmpassword();" required>
+				</div>
+				<div class="form-group">
+					<label for="vehicletextbox"><font color="white">AddVehicle:</font></label>
+					<input type="text" class="form-control"  name="vehicletextbox" id="vehicletextbox"  placeholder="KA-34-1996" onblur="validatecarnum();"required>
+				</div>
+				<button type="submit" class="btn btn-success">SIGNUP</button>
+			</form>
+		</div>
+		<div class="col-sm-4">
+			
+		</div>
+	</div>
+	</div>
+
+</body>
+
+</html>
