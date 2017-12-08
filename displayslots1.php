@@ -38,7 +38,7 @@ while($row = mysqli_fetch_array($result,MYSQL_ASSOC))
 	
   }
  $i=0;
-$result = json_decode(exec('python test1.py'), true);
+$result = json_decode(exec('python try_with_video.py'), true);
 foreach($result as $results){
     foreach($results as $key => $val){
         $myarray[$i] = $val;
@@ -49,14 +49,37 @@ foreach($result as $results){
  foreach($myarray as $arr){
 	$j=$arr;
 	$value=0;
-	$res= mysqli_query($con,"UPDATE slotstatus set STATUS='0' where SLOTNO like '$j'") or die(mysql_error()); 
-	$result1= mysqli_query($con,"SELECT * FROM bookingdetails where SLOTNO like '$arr' ") or die(mysql_error()); 
-	$row=mysqli_fetch_assoc($result1);
-	$value=$row['BOOKINGID'];
-	if($value)
-	{
-		$result2= mysqli_query($con,"DELETE FROM bookingdetails WHERE BOOKINGID like '$value' ") or die(mysql_error()); 
-	}
+		$result1= mysqli_query($con,"DELETE FROM bookingdetails WHERE SLOTNO like '$j' ") or die(mysql_error()); 
+	
+	$res= mysqli_query($con,"UPDATE slotstatus set STATUS='1' where SLOTNO like '$j'") or die(mysql_error()); 
+	if($j==1)
+		$result = "INSERT into bookingdetails(SLOTNO,EMAILID,BOOKDATE,STARTTIME,ENDTIME,STARTTIMESTAMP,ENDTIMESTAMP,OTPENDTIME,OTPGIVEN,OTPFLAG) values('$j','pal.rohit975@gmail.com','2017-12-05','13:00:34','16:00:34','2017-12-05 13:00:34','2017-12-03 16:00:34','2017-12-02 16:02:34','7930','1')";
+	else if($j==2)
+		$result = "INSERT into bookingdetails(SLOTNO,EMAILID,BOOKDATE,STARTTIME,ENDTIME,STARTTIMESTAMP,ENDTIMESTAMP,OTPENDTIME,OTPGIVEN,OTPFLAG) values('$j','darshannayak@gmail.com','2017-12-05','13:50:34','16:50:34','2017-12-05 13:50:34','2017-12-03 16:50:34','2017-12-02 16:52:34','7931','1')";
+	else if($j==3)
+		$result = "INSERT into bookingdetails(SLOTNO,EMAILID,BOOKDATE,STARTTIME,ENDTIME,STARTTIMESTAMP,ENDTIMESTAMP,OTPENDTIME,OTPGIVEN,OTPFLAG) values('$j','pal.rohit975@gmail.com','2017-12-05','13:59:34','16:59:34','2017-12-05 13:59:34','2017-12-03 16:59:34','2017-12-02 17:00:34','7932','1')";
+	else if($j==4)
+		$result = "INSERT into bookingdetails(SLOTNO,EMAILID,BOOKDATE,STARTTIME,ENDTIME,STARTTIMESTAMP,ENDTIMESTAMP,OTPENDTIME,OTPGIVEN,OTPFLAG) values('$j','darshannayak@gmail.com','2017-12-05','12:50:34','15:50:34','2017-12-05 12:50:34','2017-12-03 15:50:34','2017-12-02 15:52:34','7933','1')";
+	else if($j==5)
+		$result = "INSERT into bookingdetails(SLOTNO,EMAILID,BOOKDATE,STARTTIME,ENDTIME,STARTTIMESTAMP,ENDTIMESTAMP,OTPENDTIME,OTPGIVEN,OTPFLAG) values('$j','pal.rohit975@gmail.com','2017-12-05','12:57:34','15:57:34','2017-12-05 12:57:34','2017-12-03 15:57:34','2017-12-02 15:59:34','7934','1')";
+	else if($j==6)
+		$result = "INSERT into bookingdetails(SLOTNO,EMAILID,BOOKDATE,STARTTIME,ENDTIME,STARTTIMESTAMP,ENDTIMESTAMP,OTPENDTIME,OTPGIVEN,OTPFLAG) values('$j','darshannayak@gmail.com','2017-12-05','13:45:34','16:45:34','2017-12-05 13:45:34','2017-12-03 16:45:34','2017-12-02 16:47:34','7935','1')";
+	else if($j==7)
+		$result = "INSERT into bookingdetails(SLOTNO,EMAILID,BOOKDATE,STARTTIME,ENDTIME,STARTTIMESTAMP,ENDTIMESTAMP,OTPENDTIME,OTPGIVEN,OTPFLAG) values('$j','pal.rohit975@gmail.com','2017-12-05','12:40:34','15:40:34','2017-12-05 12:40:34','2017-12-03 15:40:34','2017-12-02 15:42:34','7936','1')";
+	else if($j==8)
+		$result = "INSERT into bookingdetails(SLOTNO,EMAILID,BOOKDATE,STARTTIME,ENDTIME,STARTTIMESTAMP,ENDTIMESTAMP,OTPENDTIME,OTPGIVEN,OTPFLAG) values('$j','darshannayak@gmail.com','2017-12-05','12:42:34','15:42:34','2017-12-05 12:42:34','2017-12-03 15:42:34','2017-12-02 15:44:34','7937','1')";
+	
+		 if ($con->query($result) === TRUE) 
+			  {
+				$last_id = $con->insert_id;
+			  }	 
+	#$result1= mysqli_query($con,"SELECT * FROM bookingdetails where SLOTNO like '$arr' ") or die(mysql_error()); 
+	#$row=mysqli_fetch_assoc($result1);
+	#$value=$row['BOOKINGID'];
+	#if($value)
+	#{#
+		#$result2= mysqli_query($con,"DELETE FROM bookingdetails WHERE BOOKINGID like '$value' ") or die(mysql_error()); 
+	#}#
 		
 	
  }
@@ -114,7 +137,23 @@ while($row=mysqli_fetch_array($result))
 
 
 ?>
+<style>
+.foo {
+  float: left;
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+  border: 1px solid rgba(0, 0, 0, .2);
+}
 
+.green {
+  background: #008000   ;
+}
+
+.red {
+  background: #ff0000;
+}
+</style>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -139,8 +178,10 @@ while($row=mysqli_fetch_array($result))
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Profile
         <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="parking.html">cancel booking</a></li>
-          <li><a href="index.html">logout</a></li>
+          <li><a href="parking.html">Cancel booking</a></li>
+          <li><a href="index.php">Logout</a></li>
+		  <li><a href="bookingdetails.php">Booking details</a></li>
+		   <li><a href="parking.html">Enter the otp</a></li>
         </ul>
       </li>
       
@@ -207,6 +248,21 @@ while($row=mysqli_fetch_array($result))
 
 </div>
 </div>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-4">
+			
+		</div>
+		<div class="col-sm-4">
+			<div class="foo green"></div><h6><font color="white"> FREE SLOTS</font></h6>
+			<div class="foo red"></div><h6><font color="white"> BOOKED SLOTS</font></h6>
+		</div>
+		<div class="col-sm-4">
+			
+		</div>
+	<div>
+<div>
+
 </body>
 
 </html>

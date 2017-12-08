@@ -14,7 +14,7 @@ $result= mysqli_query($con,"SELECT * FROM spaces where NAME like '$searchplace1'
   {
 	  ?>
 	<script>
-	alert("place should not contain only numbers");
+	alert("There should  be  only alphabets");
 	window.location.href='parking.html';
 	</script>
 	<?php

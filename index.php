@@ -71,12 +71,12 @@ $res1= mysqli_query($con,"UPDATE spaces set NOOFBOOKEDSLOTS = '$countbook' where
       <a class="navbar-brand" href="#">SMARTPARK</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="index.html">Home</a></li>
+      <li class="active"><a href="index.php">Home</a></li>
 	  <li class="active"><a href="howitworks.php">HOW IT WORKS</a></li>
      
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="signuppage.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="signuppage.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
       <li><a href="loginpage.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     </ul>
   </div>

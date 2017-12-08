@@ -1,3 +1,8 @@
+<html>
+
+
+<head>
+
 <?php
 $flag=0;
 $cflag=0;
@@ -13,10 +18,11 @@ $contact=$_POST['contacttextbox'];
 $password=$_POST['passwordtextbox'];
 $confirmpassword=$_POST['confirmpasswordtextbox'];
 $vehiclenumber=$_POST['vehicletextbox'];
+$hiddenflag=$_POST['hiddentextbox'];
 if(preg_match("/^[0-9]{10}$/", $contact)) {
   $flag=1;
 }
-
+echo $hiddenflag;
 
 function checkUnique($email1,$contact1,$vehiclenumber1) {
 	$conn=new mysqli("localhost","root","","user");
@@ -78,7 +84,7 @@ else
 	$cflag=0;
 }
 	
-if(strlen($vehiclenumber)!=13)
+/*if(strlen($vehiclenumber)!=13)
 {
 	?>
 		<script>
@@ -98,11 +104,12 @@ if(strlen($vehiclenumber)!=13)
 		$flag=1;
 }
 */
-if($flag==1 && $cflag==1)
+if($cflag==1 || $hiddenflag==1)
 {
 	?>
 	<script>
-	window.location.href='signuppage.html';
+	alert("could not sign you in");
+	window.location.href='signuppage.php';
 	</script>
 	<?php
 }
@@ -127,3 +134,7 @@ else
 }
 
 ?>
+</head>
+<body>
+</body>
+</html>

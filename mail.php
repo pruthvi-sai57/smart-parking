@@ -1,7 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+</head>
+<body>
 <?php
+session_start();
+$con=mysqli_connect("localhost","root","","user") or die("Failed to connect to MySQL: " . mysql_error()); 
+$db=mysqli_select_db($con,"user") or die("Failed to connect to MySQL: " . mysql_error()); 
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -24,25 +29,51 @@ $mail->Port       = 587;                   // SMTP port
 $mail->Username   = "pruthvisaiellur@gmail.com";  // username
 $mail->Password   = "sai12345";            // password
 
-$mail->SetFrom('pruthvisaiellur@gmail.com', 'Test');
+$mail->SMTPOptions = array(
+    'ssl' => array(
+        'verify_peer' => false,
+        'verify_peer_name' => false,
+        'allow_self_signed' => true
+    )
+);
+	
+	
 
-$mail->Subject    = "I hope this works!";
 
- $mail->isHTML(true);                                  // Set email format to HTML
-    $mail->Subject = 'Here is the subject';
-    $mail->Body    = 'hi bro your booking id is 56 come to parking slot!!!!!! <b>in bold!</b>';
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
-$address = "divyanshsrivastav84@gmail.com";
-$mail->AddAddress($address, "Test");
+$address = 'pruthvisaiellur@gmail.com';
+$mail->SetFrom('pruthvisaiellur@gmail.com', 'SMART PARKING SOLUTIONS');
+$mail->Subject    = 'Booking details';
+$mail->isHTML(true);                                  // Set email format to HTML
+$mail->Body = 'hello';
+#$mail->Body = "$table;";
+$mail->AltBody="Please Use a Html Compaible Email Veiwer";
+$mail->FromName = "pruthvi sai";   
+$mail->AddAddress($address, 'Smart Parking Solutions');
 
-if(!$mail->Send()) {
-  echo "Mailer Error: " . $mail->ErrorInfo;
-} else {
-  echo "Message sent!";
+
+if(!$mail->Send())
+{
+   echo "Error sending: " . $mail->ErrorInfo;;
 }
- ?>
- </head>
- <body>
- </body>
- </html>
+else
+{
+   echo "Message is sent";
+}
+?>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+ 	
+	
+ 
+ 
+ 

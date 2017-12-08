@@ -3,6 +3,9 @@ session_start();
 $flagotp=0;
 $con=mysqli_connect("localhost","root","","user") or die("Failed to connect to MySQL: " . mysql_error()); 
 $db=mysqli_select_db($con,"user") or die("Failed to connect to MySQL: " . mysql_error()); 
+
+
+ date_default_timezone_set('Asia/kolkata');
   $tempstamp=date('Y-m-d H:i:s');
   $tempstamp1=strtotime($tempstamp);
   $r=$_SESSION['EML'];
@@ -14,8 +17,7 @@ $db=mysqli_select_db($con,"user") or die("Failed to connect to MySQL: " . mysql_
   $checkotp=$row['OTPGIVEN'];
  
 $diff=$tempstamp1-$new_time1;
-echo $diff;
-  if( $diff<=0 && $checkotp==$otpenter)
+ if( $diff<=0 && $checkotp==$otpenter)
   {
 	  
 	  $res= mysqli_query($con,"UPDATE bookingdetails set OTPFLAG='1' where EMAILID like '$r'") or die(mysql_error()); 
@@ -41,5 +43,11 @@ echo $diff;
 	 $by ="<script> alert('".$bodyy."'); window.location.href='parking.html';</script>";
 	 echo $by; 
   }
+  
+
+ 
+  
+  
+ 
   
 ?>
